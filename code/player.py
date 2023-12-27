@@ -168,6 +168,8 @@ class Player(pygame.sprite.Sprite):
 				if collided_interaction_sprite:
 					if collided_interaction_sprite[0].name == 'Trader':
 						self.toggle_shop()
+					elif collided_interaction_sprite[0].name == 'Fishing':
+						print('fishing')
 					else:
 						self.animation_status = 'left_idle'
 						self.sleep = True

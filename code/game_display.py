@@ -70,6 +70,10 @@ class Display:
 		#fence
 		for x, y, surf in tmx_data.get_layer_by_name('Fence').tiles():
 			Generic((x * TILE_SIZE,y * TILE_SIZE), surf, [self.all_sprites, self.collision_sprites])
+		
+		#fence for cow farm
+		for x, y, surf in tmx_data.get_layer_by_name('CowFarm').tiles():
+			Generic((x * TILE_SIZE,y * TILE_SIZE), surf, [self.all_sprites, self.collision_sprites])
 
 		#water 
 		water_frames = import_folder('../graphics/water')
@@ -112,6 +116,9 @@ class Display:
 				Interaction((obj.x,obj.y), (obj.width,obj.height), self.interaction_sprites, obj.name)
 
 			if obj.name == 'Trader':
+				Interaction((obj.x,obj.y), (obj.width,obj.height), self.interaction_sprites, obj.name)
+			
+			if obj.name == "Fishing":
 				Interaction((obj.x,obj.y), (obj.width,obj.height), self.interaction_sprites, obj.name)
 
 		#the floor background

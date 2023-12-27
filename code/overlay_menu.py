@@ -87,7 +87,7 @@ class Inventory:
             text_surf = self.font2.render(f"{key} seed : {amount}", False, (184,139,98))
             self.text_surfs.append(text_surf)
 
-    def show(self):
+    def show(self, text_surf1, amount, top):
         #background
         self.menu_top = SCREEN_HEIGHT / 2 - self.height / 2
         self.main_rect = pygame.Rect(SCREEN_WIDTH/2 - self.width/2, self.menu_top, self.width, self.height)
@@ -103,8 +103,16 @@ class Inventory:
             item_rect = item_surf.get_rect(topleft = (self.main_rect.left+40, self.main_rect.top + 80 + space))
             self.display_surface.blit(item_surf, item_rect)
             space += 40
+        
+        amount_surf = self.font.render(str(amount), False, 'Black')
+        amount_rect = amount_surf.get_rect(midright = (self.main_rect.right - 20, self.main_rect.centery))
+        self.display_surface.blit(amount_surf, amount_rect)
 
     def update(self):
         self.input() 
-        self.show()
+        for text_index, text_surf in enumerate(self.text_surfs):
+            top = SCREEN_HEIGHT / 2 - self.height / 2
+            amount_list = list(self.player.item_inventory.values()) + list(self.player.seed_inventory.values())
+            amount = amount_list[text_index]
+            self.show(text_surf, amount, top)
     

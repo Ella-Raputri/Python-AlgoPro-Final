@@ -16,7 +16,7 @@ class Menu:
         self.padding = 8
 
         #entries
-        self.options = list(self.player.item_inventory.keys()) + list(self.player.seed_inventory.keys())
+        self.options = list(self.player.item_inventory.keys()) + list(self.player.seed_inventory.keys()) + list(self.player.other_inventory.keys())
         self.sell_border = len(self.player.item_inventory) - 1
         self.setup()
 
@@ -75,7 +75,10 @@ class Menu:
                 #buy item
                 else:
                     if self.player.money >= PURCHASE_PRICES[current_item]:
-                        self.player.seed_inventory[current_item] += 1
+                        if current_item == 'grass': 
+                            self.player.other_inventory[current_item] += 1
+                        else:
+                            self.player.seed_inventory[current_item] += 1
                         self.player.money -= PURCHASE_PRICES[current_item]
         
         #if player press the down arrow key while in the first entry, then loop the
@@ -116,6 +119,6 @@ class Menu:
         self.display_money()
         for text_index, text_surf in enumerate(self.text_surfs):
             top = self.main_rect.top + text_index * (text_surf.get_height() + (self.padding *2) + self.space)
-            amount_list = list(self.player.item_inventory.values()) + list(self.player.seed_inventory.values())
+            amount_list = list(self.player.item_inventory.values()) + list(self.player.seed_inventory.values()) + list(self.player.other_inventory.values())
             amount = amount_list[text_index]
             self.show_entries(text_surf, amount, top, self.index == text_index)

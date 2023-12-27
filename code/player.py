@@ -46,6 +46,7 @@ class Player(pygame.sprite.Sprite):
 
 		#player's inventory by default
 		self.item_inventory = {
+			'milk': 0,
 			'wood':   5,
 			'corn':   5,
 			'tomato': 5
@@ -53,6 +54,9 @@ class Player(pygame.sprite.Sprite):
 		self.seed_inventory = {
 			'corn': 5,
 			'tomato' : 5
+		}
+		self.other_inventory = {
+			'grass': 3
 		}
 		self.money = 0
 
@@ -76,6 +80,12 @@ class Player(pygame.sprite.Sprite):
 		self.help_image = pygame.transform.rotozoom(self.help_image, 0, 3)
 		self.inventory_image = pygame.image.load('../graphics/button/inventory.png')
 		self.inventory_image = pygame.transform.rotozoom(self.inventory_image, 0, 4)
+
+		#animal
+		self.food = False
+		self.cow_max_age = 5
+		self.cow_age = 0
+		self.harvest_milk = False
 
 	def import_assets(self):
         #importing assets for player animation
@@ -161,6 +171,15 @@ class Player(pygame.sprite.Sprite):
 			#trigger inventory menu
 			if keys[pygame.K_p]:
 				self.toggle_inventory()
+			
+			if keys[pygame.K_m]:
+				if self.harvest_milk == False:
+					self.give_food()
+					print('give food')
+				else:
+					self.get_milk()
+					print('harvest')
+				print(self.cow_age)
 				
 			#trigger transition if player go to bed
 			if keys[pygame.K_RETURN]:
@@ -291,6 +310,21 @@ class Player(pygame.sprite.Sprite):
 		if self.seed_inventory[self.seed_status] > 0 and self.soil_layer.check_plantable(self.target_pos):
 			self.soil_layer.plant_seed(self.target_pos, self.seed_status)
 			self.seed_inventory[self.seed_status] -= 1
+
+	def give_food(self):
+		if self.other_inventory['grass'] > 0 and self.food == False:
+			self.other_inventory['grass'] -= 1
+			self.food = True
+			self.cow_age += 1
+
+		if self.cow_age >= self.cow_max_age: 
+			self.harvest_milk = True
+	
+	def get_milk(self):
+		if self.harvest_milk:
+			self.item_inventory['milk'] += 1
+			self.harvest_milk = False
+			self.cow_age = 0
 
 	def update(self, dt):
 		#update the player's position, animation, timer, etc based on the input

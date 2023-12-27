@@ -45,7 +45,8 @@ SALE_PRICES = {
 
 PURCHASE_PRICES = {
 	'corn': 4,
-	'tomato': 5
+	'tomato': 5,
+    'grass' : 8
 }
 
 KEYBOARD_KEYS = {

@@ -2,7 +2,7 @@ import pygame
 from game_settings import *
 from player import Player
 from overlay import Overlay
-from sprites import Generic, Water, WildFlower, Tree, Interaction, Particle
+from sprites import *
 from pytmx.util_pygame import load_pygame
 from support import *
 from transition import Transition
@@ -71,10 +71,13 @@ class Display:
 		for x, y, surf in tmx_data.get_layer_by_name('Fence').tiles():
 			Generic((x * TILE_SIZE,y * TILE_SIZE), surf, [self.all_sprites, self.collision_sprites])
 		
-		#fence for cow farm
+		#cow farm
+		cow_frames = import_folder('../graphics/animal')
+		for x, y, surf in tmx_data.get_layer_by_name('cow').tiles():
+			Animal((x * TILE_SIZE,y * TILE_SIZE), cow_frames, [self.all_sprites, self.collision_sprites])
 		for x, y, surf in tmx_data.get_layer_by_name('CowFarm').tiles():
 			Generic((x * TILE_SIZE,y * TILE_SIZE), surf, [self.all_sprites, self.collision_sprites])
-
+			
 		#water 
 		water_frames = import_folder('../graphics/water')
 		for x, y, surf in tmx_data.get_layer_by_name('Water').tiles():
@@ -161,6 +164,10 @@ class Display:
 
 		#sky color back to the day
 		self.sky.start_color = [255,255,255]
+
+		#cow hungry again
+		self.player.food = False
+	
 
 	def plant_collision(self):
 		if self.soil_layer.plant_sprites:

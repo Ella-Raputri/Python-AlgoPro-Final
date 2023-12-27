@@ -106,3 +106,26 @@ class Tree(Generic):
 	def update(self, dt):
 		if self.alive:
 			self.check_death()
+
+class Animal(Generic):
+	def __init__(self, pos, frames, groups):
+		#animation setup
+		self.frames = frames
+		self.frame_index = 0
+
+		#sprite setup
+		super().__init__(
+				pos = pos, 
+				surf = self.frames[self.frame_index], 
+				groups = groups, 
+				z = LAYERS['main']) 
+
+	def animate(self,dt):
+		self.frame_index += 5 * dt
+		if self.frame_index >= len(self.frames):
+			self.frame_index = 0
+        #update the image with the new surface
+		self.image = self.frames[int(self.frame_index)]
+
+	def update(self,dt):
+		self.animate(dt)

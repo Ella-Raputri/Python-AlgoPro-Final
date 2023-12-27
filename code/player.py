@@ -1,9 +1,12 @@
 import pygame, sys
 from game_settings import *
 from support import *
+from sprites import Generic
+from pytmx.util_pygame import load_pygame
 
 class Player(pygame.sprite.Sprite):
-	def __init__(self, pos, group, collision_sprites, tree_sprites, interaction, soil_layer, toggle_shop, toggle_help, toggle_inventory):
+	def __init__(self, pos, group, collision_sprites, all_sprites, tree_sprites, 
+			  interaction, soil_layer, toggle_shop, toggle_help, toggle_inventory, tmx_data_map):
 		super().__init__(group)
 		self.import_assets()
 
@@ -61,7 +64,9 @@ class Player(pygame.sprite.Sprite):
 		self.money = 0
 
 		#interaction
+		self.all_sprites = all_sprites
 		self.tree_sprites = tree_sprites
+		self.milk_sprites = pygame.sprite.Group()
 		self.interaction = interaction
 		self.sleep = False
 		self.soil_layer = soil_layer
@@ -86,6 +91,7 @@ class Player(pygame.sprite.Sprite):
 		self.cow_max_age = 5
 		self.cow_age = 0
 		self.harvest_milk = False
+		self.tmx_data = tmx_data_map
 
 	def import_assets(self):
         #importing assets for player animation
@@ -171,16 +177,7 @@ class Player(pygame.sprite.Sprite):
 			#trigger inventory menu
 			if keys[pygame.K_p]:
 				self.toggle_inventory()
-			
-			if keys[pygame.K_m]:
-				if self.harvest_milk == False:
-					self.give_food()
-					print('give food')
-				else:
-					self.get_milk()
-					print('harvest')
-				print(self.cow_age)
-				
+
 			#trigger transition if player go to bed
 			if keys[pygame.K_RETURN]:
 				collided_interaction_sprite = pygame.sprite.spritecollide(self,self.interaction,False)
@@ -189,6 +186,12 @@ class Player(pygame.sprite.Sprite):
 						self.toggle_shop()
 					elif collided_interaction_sprite[0].name == 'Fishing':
 						print('fishing')
+
+					elif collided_interaction_sprite[0].name == 'Feed_cow':
+						if self.harvest_milk == False:
+							self.give_food()
+						else:
+							self.get_milk()
 					else:
 						self.animation_status = 'left_idle'
 						self.sleep = True
@@ -316,6 +319,9 @@ class Player(pygame.sprite.Sprite):
 			self.other_inventory['grass'] -= 1
 			self.food = True
 			self.cow_age += 1
+			grass_surf = pygame.image.load('../graphics/milk/grass.png').convert_alpha()
+			for x, y, __ in self.tmx_data.get_layer_by_name('CowFood').tiles():
+				Generic((x * TILE_SIZE,y * TILE_SIZE), grass_surf, [self.all_sprites, self.collision_sprites, self.milk_sprites])
 
 		if self.cow_age >= self.cow_max_age: 
 			self.harvest_milk = True
@@ -325,6 +331,10 @@ class Player(pygame.sprite.Sprite):
 			self.item_inventory['milk'] += 1
 			self.harvest_milk = False
 			self.cow_age = 0
+
+			milk_surf = pygame.image.load('../graphics/milk/milk_item/0.png').convert_alpha()
+			for x, y, __ in self.tmx_data.get_layer_by_name('CowMilk').tiles():
+				Generic((x * TILE_SIZE,y * TILE_SIZE), milk_surf, [self.all_sprites, self.collision_sprites])
 
 	def update(self, dt):
 		#update the player's position, animation, timer, etc based on the input

@@ -70,13 +70,6 @@ class Display:
 		#fence
 		for x, y, surf in tmx_data.get_layer_by_name('Fence').tiles():
 			Generic((x * TILE_SIZE,y * TILE_SIZE), surf, [self.all_sprites, self.collision_sprites])
-		
-		#cow farm
-		cow_frames = import_folder('../graphics/animal')
-		for x, y, surf in tmx_data.get_layer_by_name('cow').tiles():
-			Animal((x * TILE_SIZE,y * TILE_SIZE), cow_frames, [self.all_sprites, self.collision_sprites])
-		for x, y, surf in tmx_data.get_layer_by_name('CowFarm').tiles():
-			Generic((x * TILE_SIZE,y * TILE_SIZE), surf, [self.all_sprites, self.collision_sprites])
 			
 		#water 
 		water_frames = import_folder('../graphics/water')
@@ -108,12 +101,14 @@ class Display:
 					pos = (obj.x,obj.y), 
 					group = self.all_sprites, 
 					collision_sprites = self.collision_sprites,
+					all_sprites = self.all_sprites,
 					tree_sprites = self.tree_sprites,
 					interaction = self.interaction_sprites,
 					soil_layer = self.soil_layer,
 					toggle_shop = self.toggle_shop,
 					toggle_help = self.toggle_help,
-					toggle_inventory= self.toggle_inventory)
+					toggle_inventory= self.toggle_inventory,
+					tmx_data_map= tmx_data)
 			
 			if obj.name == 'Bed':
 				Interaction((obj.x,obj.y), (obj.width,obj.height), self.interaction_sprites, obj.name)
@@ -123,6 +118,23 @@ class Display:
 			
 			if obj.name == "Fishing":
 				Interaction((obj.x,obj.y), (obj.width,obj.height), self.interaction_sprites, obj.name)
+
+			if obj.name == "Feed_cow":
+				Interaction((obj.x,obj.y), (obj.width,obj.height), self.interaction_sprites, obj.name)
+
+		#cow farm
+		cow_frames = import_folder('../graphics/animal')
+		for x, y, surf in tmx_data.get_layer_by_name('cow').tiles():
+			Animal((x * TILE_SIZE,y * TILE_SIZE), cow_frames, [self.all_sprites, self.collision_sprites])
+		for x, y, surf in tmx_data.get_layer_by_name('CowFarm').tiles():
+			Generic((x * TILE_SIZE,y * TILE_SIZE), surf, [self.all_sprites, self.collision_sprites])
+
+		milk_surf_list = import_folder('../graphics/milk/milk_item')
+		self.index_milk = 0
+		# self.result_sprites = pygame.sprite.Group()
+		milk_surf = milk_surf_list[self.index_milk]
+		for x, y, __ in tmx_data.get_layer_by_name('CowMilk').tiles():
+			Generic((x * TILE_SIZE,y * TILE_SIZE), milk_surf, [self.all_sprites, self.collision_sprites])
 
 		#the floor background
 		Generic(
@@ -166,8 +178,22 @@ class Display:
 		self.sky.start_color = [255,255,255]
 
 		#cow hungry again
+		tmx_data = load_pygame('../data/map.tmx')
+		
+		if self.player.food == True:
+			milk_surf_list = import_folder('../graphics/milk/milk_item')
+			if self.index_milk < 4:
+				self.index_milk += 1
+			else:
+				self.index_milk = 0
+			# self.result_sprites = pygame.sprite.Group()
+			milk_surf = milk_surf_list[self.index_milk]
+			for x, y, __ in tmx_data.get_layer_by_name('CowMilk').tiles():
+				Generic((x * TILE_SIZE,y * TILE_SIZE), milk_surf, [self.all_sprites, self.collision_sprites])
+
 		self.player.food = False
-	
+		for item in self.player.milk_sprites:
+			item.kill()
 
 	def plant_collision(self):
 		if self.soil_layer.plant_sprites:

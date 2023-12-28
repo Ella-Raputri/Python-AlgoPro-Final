@@ -2,7 +2,6 @@ import pygame, sys
 from game_settings import *
 from support import *
 from sprites import Generic
-from pytmx.util_pygame import load_pygame
 
 class Player(pygame.sprite.Sprite):
 	def __init__(self, pos, group, collision_sprites, all_sprites, tree_sprites, 
@@ -332,6 +331,7 @@ class Player(pygame.sprite.Sprite):
 			self.harvest_milk = False
 			self.cow_age = 0
 
+			#milk bottle become empty again
 			milk_surf = pygame.image.load('../graphics/milk/milk_item/0.png').convert_alpha()
 			for x, y, __ in self.tmx_data.get_layer_by_name('CowMilk').tiles():
 				Generic((x * TILE_SIZE,y * TILE_SIZE), milk_surf, [self.all_sprites, self.collision_sprites])

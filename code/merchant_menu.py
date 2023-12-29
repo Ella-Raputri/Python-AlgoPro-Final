@@ -26,7 +26,7 @@ class Menu:
     
     def display_money(self):
         text_surf = self.font.render(f'Money: ${self.player.money}', False, 'Black')
-        text_rect = text_surf.get_rect(midbottom= (SCREEN_WIDTH/2, SCREEN_HEIGHT -550))
+        text_rect = text_surf.get_rect(midbottom= (SCREEN_WIDTH/2, SCREEN_HEIGHT -600))
         pygame.draw.rect(self.display_surface, 'White', text_rect.inflate(10,10), 0, 5)
         self.display_surface.blit(text_surf, text_rect)
 

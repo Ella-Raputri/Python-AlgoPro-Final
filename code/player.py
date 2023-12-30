@@ -2,10 +2,11 @@ import pygame, sys
 from game_settings import *
 from support import *
 from sprites import Generic
+from cutscene import *
 
 class Player(pygame.sprite.Sprite):
 	def __init__(self, pos, group, collision_sprites, all_sprites, tree_sprites, 
-			  interaction, soil_layer, toggle_shop, toggle_help, toggle_inventory, tmx_data_map):
+			  interaction, soil_layer, toggle_shop, toggle_help, toggle_inventory, tmx_data_map, cutscene):
 		super().__init__(group)
 		self.import_assets()
 
@@ -91,6 +92,10 @@ class Player(pygame.sprite.Sprite):
 		self.cow_age = 0
 		self.harvest_milk = False
 		self.tmx_data = tmx_data_map
+
+		#cutscene
+		self.cut_scene_manager = cutscene
+
 
 	def import_assets(self):
         #importing assets for player animation
@@ -345,3 +350,32 @@ class Player(pygame.sprite.Sprite):
 
 		self.move(dt)
 		self.animate(dt)
+
+	def update_cutscene(self):
+		keys = pygame.key.get_pressed()
+		if keys[pygame.K_c]:
+			if 'cutscene3' in self.cut_scene_manager.cut_scenes_complete:
+				collided_interaction_sprite = pygame.sprite.spritecollide(self,self.interaction,False)
+				if collided_interaction_sprite:
+					if collided_interaction_sprite[0].name == 'Table':
+						self.cut_scene_manager.start_cut_scene(CutSceneFour())
+						christmas_tree_surf = pygame.image.load('../graphics/dialogue/cutscene4/christmas_tree.png').convert_alpha()
+						for x, y, __ in self.tmx_data.get_layer_by_name('ChristmasTree').tiles():
+							Generic((x * TILE_SIZE,y * TILE_SIZE), christmas_tree_surf, [self.all_sprites, self.collision_sprites])
+
+			elif 'cutscene2' in self.cut_scene_manager.cut_scenes_complete:
+				if self.money >= 100:
+					self.cut_scene_manager.start_cut_scene(CutSceneThree())
+					self.money += 2000
+
+			elif 'cutscene1' in self.cut_scene_manager.cut_scenes_complete:
+				collided_interaction_sprite = pygame.sprite.spritecollide(self,self.interaction,False)
+				if collided_interaction_sprite:
+					if collided_interaction_sprite[0].name == 'Table':
+						self.cut_scene_manager.start_cut_scene(CutSceneTwo())
+
+			else:
+				self.cut_scene_manager.start_cut_scene(CutSceneOne())
+				christmas_tree_surf = pygame.image.load('../graphics/dialogue/cutscene4/christmas_tree.png').convert_alpha()
+				for x, y, __ in self.tmx_data.get_layer_by_name('ChristmasTree').tiles():
+					Generic((x * TILE_SIZE,y * TILE_SIZE), christmas_tree_surf, [self.all_sprites, self.collision_sprites])

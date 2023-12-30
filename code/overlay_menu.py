@@ -7,7 +7,7 @@ class Overlay_Menu:
         #basic setup
         self.player = player
         self.display_surface = pygame.display.get_surface()
-        self.font = pygame.font.Font('../font/Rubik-Bold.ttf', 40)
+        self.font = pygame.font.Font('../font/Rubik-Bold.ttf', 35)
         self.font2 = pygame.font.Font('../font/Rubik-SemiBold.ttf', 25)
 
         #graphics
@@ -39,13 +39,13 @@ class Overlay_Menu:
         pygame.draw.rect(self.display_surface, (232, 207,166), self.main_rect)
 
         #text
-        text_surf = self.font.render("KEYBOARD USE", False, 'BLACK')
+        text_surf = self.font.render("KEYBOARD SHORTCUT", False, 'BLACK')
         text_rect = text_surf.get_rect(midtop = (self.main_rect.centerx, self.main_rect.top+10))
         self.display_surface.blit(text_surf, text_rect)
 
         space = 10
         for item_surf in self.text_surfs:
-            item_rect = item_surf.get_rect(topleft = (self.main_rect.left+40, self.main_rect.top + 80 + space))
+            item_rect = item_surf.get_rect(topleft = (self.main_rect.left+40, self.main_rect.top + 60 + space))
             self.display_surface.blit(item_surf, item_rect)
             space += 40
 

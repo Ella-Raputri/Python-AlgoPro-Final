@@ -11,11 +11,14 @@ from sky import Rain, Sky
 from random import randint
 from merchant_menu import Menu
 from overlay_menu import Overlay_Menu, Inventory
+from cutscene import CutSceneManager, CutSceneOne
 
 class Display:
 	def __init__(self):
 		# get the display surface
 		self.display_surface = pygame.display.get_surface()
+		#cutscene
+		self.cut_scene_manager = CutSceneManager(self.display_surface)
 
 		# sprites groups
 		self.all_sprites = CameraGroup()
@@ -108,7 +111,8 @@ class Display:
 					toggle_shop = self.toggle_shop,
 					toggle_help = self.toggle_help,
 					toggle_inventory= self.toggle_inventory,
-					tmx_data_map= self.tmx_data)
+					tmx_data_map= self.tmx_data,
+					cutscene= self.cut_scene_manager)
 			
 			if obj.name == 'Bed':
 				Interaction((obj.x,obj.y), (obj.width,obj.height), self.interaction_sprites, obj.name)
@@ -120,6 +124,9 @@ class Display:
 				Interaction((obj.x,obj.y), (obj.width,obj.height), self.interaction_sprites, obj.name)
 
 			if obj.name == "Feed_cow":
+				Interaction((obj.x,obj.y), (obj.width,obj.height), self.interaction_sprites, obj.name)
+
+			if obj.name == "Table":
 				Interaction((obj.x,obj.y), (obj.width,obj.height), self.interaction_sprites, obj.name)
 
 		#cow farm
@@ -210,23 +217,29 @@ class Display:
 
 	def run(self,dt):
 		#run all the game elements
-		self.all_sprites.custom_draw(self.player)
-
+		
 		#update
-		if self.shop_active and not self.help_active and not self.inventory_active:
-			self.menu.update()
-		elif self.help_active and not self.shop_active and not self.inventory_active:
-			self.help.update()
-		elif self.inventory_active and not self.shop_active and not self.help_active:
-			self.inventory.update()
+		if self.cut_scene_manager.cut_scene_running == False:
+			self.all_sprites.custom_draw(self.player)
+			if self.shop_active and not self.help_active and not self.inventory_active:
+				self.menu.update()
+			elif self.help_active and not self.shop_active and not self.inventory_active:
+				self.help.update()
+			elif self.inventory_active and not self.shop_active and not self.help_active:
+				self.inventory.update()
+			else:
+				self.player.update_cutscene()
+				self.all_sprites.update(dt)
+				self.plant_collision()
+				self.overlay.display()
 		else:
-			self.all_sprites.update(dt)
-			self.plant_collision()
+			self.cut_scene_manager.update()
+			self.cut_scene_manager.draw()
 
-		self.overlay.display()
 		
 		#if raining
-		if self.raining and not self.shop_active:
+		if self.raining and not self.shop_active and not self.help_active and not self.inventory_active \
+			and self.cut_scene_manager.cut_scene_running == False:
 			self.rain.update()
 
 		#daytime transition

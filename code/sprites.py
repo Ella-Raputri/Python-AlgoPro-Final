@@ -1,6 +1,5 @@
 import pygame
 from game_settings import *
-from random import randint, choice
 from support import *
 
 class Generic(pygame.sprite.Sprite):

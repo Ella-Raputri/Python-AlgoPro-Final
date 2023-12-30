@@ -63,7 +63,8 @@ KEYBOARD_KEYS = {
     'P' : 'Check inventory',
     'O' : 'Close menu',
     'Enter': 'Go to bed or open merchant menu',
-    'Arrow' : 'Navigate items in merchant menu'
+    'Arrow' : 'Navigate items in merchant menu',
+    'C' : 'Start cutscene'
 }
 
 BUTTON_POS = {

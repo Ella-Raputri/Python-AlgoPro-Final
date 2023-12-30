@@ -235,7 +235,7 @@ class Display:
 		else:
 			self.cut_scene_manager.update()
 			self.cut_scene_manager.draw()
-
+		
 		
 		#if raining
 		if self.raining and not self.shop_active and not self.help_active and not self.inventory_active \

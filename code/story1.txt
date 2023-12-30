@@ -9,5 +9,4 @@ The neighbour's name is Hare and he is as old as Bunn's grandpa.
 Bunn lived through his day with sorrow after his grandpa died.
 However, recently, a thief sneaked into Bunn's house.
 The thief stole all of Bunn's money, 
-leaving only a weird letter on top of the table.
-(Go to table and press C)
+leaving only a weird letter beside the table. (Go to table and press C)

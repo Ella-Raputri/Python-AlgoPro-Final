@@ -364,7 +364,7 @@ class Player(pygame.sprite.Sprite):
 							Generic((x * TILE_SIZE,y * TILE_SIZE), christmas_tree_surf, [self.all_sprites, self.collision_sprites])
 
 			elif 'cutscene2' in self.cut_scene_manager.cut_scenes_complete:
-				if self.money >= 100:
+				if self.money >= 200:
 					self.cut_scene_manager.start_cut_scene(CutSceneThree())
 					self.money += 2000
 
@@ -376,6 +376,8 @@ class Player(pygame.sprite.Sprite):
 
 			else:
 				self.cut_scene_manager.start_cut_scene(CutSceneOne())
-				christmas_tree_surf = pygame.image.load('../graphics/dialogue/cutscene4/christmas_tree.png').convert_alpha()
-				for x, y, __ in self.tmx_data.get_layer_by_name('ChristmasTree').tiles():
-					Generic((x * TILE_SIZE,y * TILE_SIZE), christmas_tree_surf, [self.all_sprites, self.collision_sprites])
+				letter_surf = pygame.Surface((20,10))
+				letter_surf.fill('white')
+
+				for x, y, __ in self.tmx_data.get_layer_by_name('Letter').tiles():
+					Generic((x * TILE_SIZE,y * TILE_SIZE), letter_surf, [self.all_sprites, self.collision_sprites])

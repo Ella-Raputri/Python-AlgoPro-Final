@@ -23,6 +23,8 @@ def draw_dialog_box(screen):
     dialog_rect = dialog_pict.get_rect(topleft=(0,450))
     screen.blit(dialog_pict, dialog_rect)
 
+
+
 class CutSceneOne:
     def __init__(self):
         # Variables
@@ -33,6 +35,8 @@ class CutSceneOne:
         # Dialogue
         self.setup()
         self.text_counter = 0
+        self.next_sound = pygame.mixer.Sound('../audio/cutscene.mp3')
+        self.next_sound.set_volume(0.4)      
 
     def setup(self):
         self.text={}
@@ -50,6 +54,7 @@ class CutSceneOne:
                     self.text_counter += 0.05
                 else:
                     if space:
+                        self.next_sound.play()
                         self.text_counter = 0
                         self.step += 1
             else:
@@ -58,6 +63,7 @@ class CutSceneOne:
                 else:
                     if space:
                         #finish cutscene
+                        self.next_sound.play()
                         self.cut_scene_running = False
 
         return self.cut_scene_running
@@ -91,6 +97,9 @@ class CutSceneTwo:
         self.setup()
         self.text_counter = 0
 
+        self.next_sound = pygame.mixer.Sound('../audio/cutscene.mp3')
+        self.next_sound.set_volume(0.6)  
+
     def setup(self):
         self.text={}
         file_dialogue1 = open("story2.txt", "r")
@@ -107,6 +116,7 @@ class CutSceneTwo:
                     self.text_counter += 0.04
                 else:
                     if space:
+                        self.next_sound.play()
                         self.text_counter = 0
                         self.step += 1
             else:
@@ -115,6 +125,7 @@ class CutSceneTwo:
                 else:
                     if space:
                         #finish cutscene
+                        self.next_sound.play()
                         self.cut_scene_running = False
 
         return self.cut_scene_running
@@ -151,6 +162,9 @@ class CutSceneThree:
         self.setup()
         self.text_counter = 0
 
+        self.next_sound = pygame.mixer.Sound('../audio/cutscene.mp3')
+        self.next_sound.set_volume(0.6)  
+
     def setup(self):
         self.text={}
         file_dialogue1 = open("story3.txt", "r")
@@ -171,6 +185,7 @@ class CutSceneThree:
                     self.text_counter += 0.03
                 else:
                     if space:
+                        self.next_sound.play()
                         self.text_counter = 0
                         self.step += 1
             else:
@@ -179,6 +194,7 @@ class CutSceneThree:
                 else:
                     if space:
                         #finish cutscene
+                        self.next_sound.play()
                         self.cut_scene_running = False
 
         return self.cut_scene_running
@@ -219,6 +235,9 @@ class CutSceneFour:
         self.setup()
         self.text_counter = 0
 
+        self.next_sound = pygame.mixer.Sound('../audio/cutscene.mp3')
+        self.next_sound.set_volume(0.6)  
+
     def setup(self):
         self.text={}
         file_dialogue1 = open("story4.txt", "r")
@@ -239,6 +258,7 @@ class CutSceneFour:
                     self.text_counter += 0.04
                 else:
                     if space:
+                        self.next_sound.play()
                         self.text_counter = 0
                         self.step += 1
             else:
@@ -247,6 +267,7 @@ class CutSceneFour:
                 else:
                     if space:
                         #finish cutscene
+                        self.next_sound.play()
                         self.cut_scene_running = False
 
         return self.cut_scene_running

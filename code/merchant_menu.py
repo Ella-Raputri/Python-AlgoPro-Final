@@ -23,6 +23,12 @@ class Menu:
         #movement
         self.index = 0
         self.timer = Timer(200)
+
+        #sound
+        self.sell_sound = pygame.mixer.Sound('../audio/sell.mp3')
+        self.sell_sound.set_volume(0.6)
+        self.buy_sound = pygame.mixer.Sound('../audio/buy.mp3')
+        self.buy_sound.set_volume(0.6)
     
     def display_money(self):
         text_surf = self.font.render(f'Money: ${self.player.money}', False, 'Black')
@@ -70,16 +76,20 @@ class Menu:
                 #sell item
                 if self.index <= self.sell_border:
                     if self.player.item_inventory[current_item] > 0:
+                        self.sell_sound.play()
                         self.player.item_inventory[current_item] -= 1
                         self.player.money += SALE_PRICES[current_item]
+               
                 #buy item
                 else:
                     if self.player.money >= PURCHASE_PRICES[current_item]:
+                        self.buy_sound.play()
                         if current_item == 'grass': 
                             self.player.other_inventory[current_item] += 1
                         else:
                             self.player.seed_inventory[current_item] += 1
                         self.player.money -= PURCHASE_PRICES[current_item]
+                        
         
         #if player press the down arrow key while in the first entry, then loop the
         #active entry to the last one

@@ -59,7 +59,7 @@ class Player(pygame.sprite.Sprite):
 			'tomato' : 5
 		}
 		self.other_inventory = {
-			'grass': 3
+			'grass': 5
 		}
 		self.money = 0
 
@@ -77,6 +77,10 @@ class Player(pygame.sprite.Sprite):
 		#sound
 		self.water_sound = pygame.mixer.Sound('../audio/water.mp3')
 		self.water_sound.set_volume(0.5)
+		self.grass_sound = pygame.mixer.Sound('../audio/grass.mp3')
+		self.grass_sound.set_volume(0.4)
+		self.milk_sound = pygame.mixer.Sound('../audio/milk.mp3')
+		self.milk_sound.set_volume(0.5)
 
 		#button
 		self.display_surface = pygame.display.get_surface()
@@ -194,8 +198,10 @@ class Player(pygame.sprite.Sprite):
 					elif collided_interaction_sprite[0].name == 'Feed_cow':
 						if self.harvest_milk == False:
 							self.give_food()
+							self.grass_sound.play()	
 						else:
-							self.get_milk()
+							self.milk_sound.play()
+							self.get_milk()	
 					else:
 						self.animation_status = 'left_idle'
 						self.sleep = True

@@ -36,7 +36,7 @@ class CutSceneOne:
         self.setup()
         self.text_counter = 0
         self.next_sound = pygame.mixer.Sound('../audio/cutscene.mp3')
-        self.next_sound.set_volume(0.4)      
+        self.next_sound.set_volume(0.3)      
 
     def setup(self):
         self.text={}
@@ -63,7 +63,6 @@ class CutSceneOne:
                 else:
                     if space:
                         #finish cutscene
-                        self.next_sound.play()
                         self.cut_scene_running = False
 
         return self.cut_scene_running
@@ -98,7 +97,7 @@ class CutSceneTwo:
         self.text_counter = 0
 
         self.next_sound = pygame.mixer.Sound('../audio/cutscene.mp3')
-        self.next_sound.set_volume(0.6)  
+        self.next_sound.set_volume(0.3)  
 
     def setup(self):
         self.text={}
@@ -125,7 +124,6 @@ class CutSceneTwo:
                 else:
                     if space:
                         #finish cutscene
-                        self.next_sound.play()
                         self.cut_scene_running = False
 
         return self.cut_scene_running
@@ -163,7 +161,7 @@ class CutSceneThree:
         self.text_counter = 0
 
         self.next_sound = pygame.mixer.Sound('../audio/cutscene.mp3')
-        self.next_sound.set_volume(0.6)  
+        self.next_sound.set_volume(0.3)  
 
     def setup(self):
         self.text={}
@@ -194,7 +192,6 @@ class CutSceneThree:
                 else:
                     if space:
                         #finish cutscene
-                        self.next_sound.play()
                         self.cut_scene_running = False
 
         return self.cut_scene_running
@@ -236,7 +233,7 @@ class CutSceneFour:
         self.text_counter = 0
 
         self.next_sound = pygame.mixer.Sound('../audio/cutscene.mp3')
-        self.next_sound.set_volume(0.6)  
+        self.next_sound.set_volume(0.3)  
 
     def setup(self):
         self.text={}
@@ -267,7 +264,6 @@ class CutSceneFour:
                 else:
                     if space:
                         #finish cutscene
-                        self.next_sound.play()
                         self.cut_scene_running = False
 
         return self.cut_scene_running

@@ -49,10 +49,10 @@ class Player(pygame.sprite.Sprite):
 
 		#player's inventory by default
 		self.item_inventory = {
-			'corn':   5,
-			'milk': 1,
-			'tomato': 5,
-			'wood':   5
+			'corn':   0,
+			'milk': 0,
+			'tomato': 0,
+			'wood':   0
 		}
 		self.seed_inventory = {
 			'corn': 5,
@@ -192,8 +192,6 @@ class Player(pygame.sprite.Sprite):
 				if collided_interaction_sprite:
 					if collided_interaction_sprite[0].name == 'Trader':
 						self.toggle_shop()
-					elif collided_interaction_sprite[0].name == 'Fishing':
-						print('fishing')
 
 					elif collided_interaction_sprite[0].name == 'Feed_cow':
 						if self.harvest_milk == False:

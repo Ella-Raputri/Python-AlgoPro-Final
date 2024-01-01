@@ -592,7 +592,6 @@
   </object>
   <object id="254" name="Trader" x="895" y="379.667" width="192" height="131.333"/>
   <object id="256" name="Bed" x="1408.67" y="1403.33" width="119.667" height="66.3333"/>
-  <object id="274" name="Fishing" x="651.952" y="2118.85" width="1897.65" height="38.8067"/>
   <object id="280" name="Feed_cow" x="1926" y="1478" width="112" height="114"/>
   <object id="285" name="Table" x="1344" y="1486" width="122" height="178"/>
  </objectgroup>

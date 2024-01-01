@@ -38,10 +38,10 @@ GROW_SPEED = {
 }
 
 SALE_PRICES = {
-	'wood': 4,
 	'corn': 10,
-	'tomato': 20,
-    'milk': 35
+    'milk': 35,
+    'tomato': 20,
+    'wood': 5
 }
 
 PURCHASE_PRICES = {
@@ -64,7 +64,7 @@ KEYBOARD_KEYS = {
     'O' : 'Close menu',
     'Enter': 'Go to bed or open merchant menu',
     'Arrow' : 'Navigate items in merchant menu',
-    'C' : 'Start cutscene'
+    'C' : 'Start cutscene',
 }
 
 BUTTON_POS = {

@@ -44,10 +44,15 @@ class Overlay_Menu:
         self.display_surface.blit(text_surf, text_rect)
 
         space = 10
-        for item_surf in self.text_surfs:
+        for item_index, item_surf in enumerate(self.text_surfs):
             item_rect = item_surf.get_rect(topleft = (self.main_rect.left+40, self.main_rect.top + 60 + space))
             self.display_surface.blit(item_surf, item_rect)
-            space += 40
+            space += 35
+
+            if item_index == len(self.text_surfs) - 1:   
+                instruction_surf = self.font2.render('Play the story to get more money and a decoration', False, (184,139,98))
+                instruction_rect = instruction_surf.get_rect(topleft = (self.main_rect.left+40, self.main_rect.top + 60 + space))
+                self.display_surface.blit(instruction_surf, instruction_rect)
 
     def update(self):
         self.input() 
@@ -101,6 +106,12 @@ class Inventory:
         #text header
         text_surf = self.font.render("INVENTORY", False, 'BLACK')
         text_rect = text_surf.get_rect(midtop = (self.main_rect.centerx, self.main_rect.top+ self.padding))
+        self.display_surface.blit(text_surf, text_rect)
+
+        #money
+        text_surf = self.font.render(f'Money: ${self.player.money}', False, 'Black')
+        text_rect = text_surf.get_rect(midtop = (self.main_rect.centerx, self.main_rect.top - (5*self.padding)))
+        pygame.draw.rect(self.display_surface, 'White', text_rect.inflate(10,10), 0, 5)
         self.display_surface.blit(text_surf, text_rect)
 
         #image

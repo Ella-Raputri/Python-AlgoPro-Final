@@ -37,13 +37,21 @@ class Menu:
         self.display_surface.blit(text_surf, text_rect)
 
     def setup(self):
+        ALL_PRICES = []
+        for price in SALE_PRICES.values():
+            ALL_PRICES.append(price)
+        for price in PURCHASE_PRICES.values():
+            ALL_PRICES.append(price)
+
         #create the text surfaces
         self.text_surfs = []
         self.total_height = 0
+        i = 0
         for item in self.options:
-            text_surf = self.font.render(item, False, 'Black')
+            text_surf = self.font.render(F'{item} (${ALL_PRICES[i]})', False, 'Black')
             self.text_surfs.append(text_surf)
             self.total_height += text_surf.get_height() + (self.padding * 2)
+            i += 1
 
         self.total_height += (len(self.text_surfs) - 1) * self.space
         self.menu_top = SCREEN_HEIGHT / 2 - self.total_height / 2

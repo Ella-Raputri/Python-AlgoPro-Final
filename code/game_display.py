@@ -119,9 +119,6 @@ class Display:
 
 			if obj.name == 'Trader':
 				Interaction((obj.x,obj.y), (obj.width,obj.height), self.interaction_sprites, obj.name)
-			
-			if obj.name == "Fishing":
-				Interaction((obj.x,obj.y), (obj.width,obj.height), self.interaction_sprites, obj.name)
 
 			if obj.name == "Feed_cow":
 				Interaction((obj.x,obj.y), (obj.width,obj.height), self.interaction_sprites, obj.name)
@@ -235,6 +232,7 @@ class Display:
 		else:
 			self.cut_scene_manager.update()
 			self.cut_scene_manager.draw()
+			self.reset()
 		
 		
 		#if raining

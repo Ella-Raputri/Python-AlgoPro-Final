@@ -201,12 +201,12 @@ class Player(pygame.sprite.Sprite):
 							self.milk_sound.play()
 							self.get_milk()	
 					else:
-						self.animation_status = 'left_idle'
+						self.animation_status = 'down_idle'
 						self.sleep = True
 
 			#checking mouse event
 			mouse_pos = pygame.mouse.get_pos()
-			self.button_setup(mouse_pos)
+			self.button_setup()
 
 			for event in pygame.event.get():
 				#trigger help menu
@@ -225,27 +225,17 @@ class Player(pygame.sprite.Sprite):
 						pygame.quit()
 						sys.exit()
 
-	def button_setup(self, mouse_pos):
+	def button_setup(self):
 		#help button
 		self.help_button = Button(image=self.help_image, 
-					   pos=BUTTON_POS['help'], 
-					   text_input=None, 
-					   font=self.font, 
-					   base_color="White", 
-					   hovering_color="Green")
+					   pos=BUTTON_POS['help'])
 
-		self.help_button.changeColor(mouse_pos)
 		self.help_button.update(self.display_surface)
 
 		#help button
 		self.inventory_button = Button(image=self.inventory_image, 
-					   pos=BUTTON_POS['inventory'], 
-					   text_input=None, 
-					   font=self.font, 
-					   base_color="White", 
-					   hovering_color="Green")
+					   pos=BUTTON_POS['inventory'])
 
-		self.inventory_button.changeColor(mouse_pos)
 		self.inventory_button.update(self.display_surface)
 
 	def get_status(self):	

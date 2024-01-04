@@ -11,7 +11,7 @@ from sky import Rain, Sky
 from random import randint
 from merchant_menu import Menu
 from overlay_menu import Overlay_Menu, Inventory
-from cutscene import CutSceneManager, CutSceneOne
+from cutscene import CutSceneManager
 
 class Display:
 	def __init__(self):

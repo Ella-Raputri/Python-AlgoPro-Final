@@ -79,7 +79,7 @@ class CutSceneOne:
                 elif self.step == 6 or self.step == 7 or self.step == 8:
                     blit_bg_image(screen, 'cutscene1/bg3.png')
                 else:
-                    blit_bg_image(screen, 'cutscene1/bg4.jpeg')
+                    blit_bg_image(screen, 'cutscene1/bg4.png')
 
                 pygame.draw.rect(screen, (232, 207,166), (0, 550, screen.get_width(), 400))
                 draw_text(screen, self.text[i][0:int(self.text_counter)], 35, (184,139,98), 50, 600)

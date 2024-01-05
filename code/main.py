@@ -34,7 +34,8 @@ class Game:
 				if event.type == pygame.MOUSEBUTTONDOWN:
 					mouse_pos = pygame.mouse.get_pos()
 					if self.intro.play_button.checkForInput(mouse_pos):
-						self.intro.play_cutscene()
+						self.display.click_sound.play()
+						# self.intro.play_cutscene()
 						self.run_game()
 
 			pygame.display.update()

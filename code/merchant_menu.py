@@ -126,10 +126,10 @@ class Menu:
 
             pygame.draw.rect(self.display_surface, 'black', bg_rect, 4, 4)
             if self.index <= self.sell_border: #sell item
-                pos_rect = self.sell_text.get_rect(midleft = (self.main_rect.left + 150, bg_rect.centery))
+                pos_rect = self.sell_text.get_rect(midleft = (self.main_rect.left + 200, bg_rect.centery))
                 self.display_surface.blit(self.sell_text, pos_rect)
             else:
-                pos_rect = self.buy_text.get_rect(midleft = (self.main_rect.left + 150, bg_rect.centery))
+                pos_rect = self.buy_text.get_rect(midleft = (self.main_rect.left + 200, bg_rect.centery))
                 self.display_surface.blit(self.buy_text, pos_rect)
 
     def update(self):

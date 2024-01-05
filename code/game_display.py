@@ -53,8 +53,11 @@ class Display:
 		self.success_sound = pygame.mixer.Sound('../audio/success.wav')
 		self.success_sound.set_volume(0.5)
 		self.bg_sound = pygame.mixer.Sound('../audio/bg.mp3')
-		self.bg_sound.set_volume(0.4)
+		self.bg_sound.set_volume(0.3)
 		self.bg_sound.play(loops=-1)
+		self.click_sound = pygame.mixer.Sound('../audio/click.mp3')
+		self.click_sound.set_volume(0.3)
+
 
 	def setup(self):
 		#set up the game element
@@ -152,9 +155,11 @@ class Display:
 		self.shop_active = not self.shop_active
 	
 	def toggle_help(self):
+		self.click_sound.play()
 		self.help_active = not self.help_active
 	
 	def toggle_inventory(self):
+		self.click_sound.play()
 		self.inventory_active = not self.inventory_active
 
 	def player_add(self,item):

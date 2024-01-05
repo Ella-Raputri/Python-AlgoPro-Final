@@ -1,7 +1,7 @@
 from pygame.math import Vector2
 
 #game name
-GAME_NAME = 'A Farm\'s Christmas Tree Tale'
+GAME_NAME = "Bunn's Christmas Tree Tale"
 
 #screen configuration
 SCREEN_HEIGHT = 720

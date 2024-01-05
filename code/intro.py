@@ -20,7 +20,7 @@ class Intro:
         self.chara_frame_index = 0
     
     def blit_text(self):
-        topic_surf1 = self.topic_font.render("A Farm's Christmas".upper(), False, 'chartreuse4')
+        topic_surf1 = self.topic_font.render("Bunn's Christmas".upper(), False, 'chartreuse4')
         topic_rect1 = topic_surf1.get_rect(center= (SCREEN_WIDTH/2, 100))
         self.display_surface.blit(topic_surf1, topic_rect1)
 

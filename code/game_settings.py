@@ -65,7 +65,7 @@ KEYBOARD_KEYS = {
     'I' : 'Switch seed',
     'P' : 'Check inventory',
     'O' : 'Close menu',
-    'Enter': 'Go to bed or open merchant menu',
+    'Enter': 'Go to bed, open merchant menu, or feed cow',
     'Arrow' : 'Navigate items in merchant menu',
     'C' : 'Start cutscene',
 }

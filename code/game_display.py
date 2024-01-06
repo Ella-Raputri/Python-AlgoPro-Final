@@ -50,10 +50,10 @@ class Display:
 		self.inventory = Inventory(self.player, self.toggle_inventory)
 
 		#sound
-		self.success_sound = pygame.mixer.Sound('../audio/success.wav')
-		self.success_sound.set_volume(0.5)
+		self.success_sound = pygame.mixer.Sound('../audio/success.mp3')
+		self.success_sound.set_volume(0.3)
 		self.bg_sound = pygame.mixer.Sound('../audio/bg.mp3')
-		self.bg_sound.set_volume(0.3)
+		self.bg_sound.set_volume(0.25)
 		self.bg_sound.play(loops=-1)
 		self.click_sound = pygame.mixer.Sound('../audio/click.mp3')
 		self.click_sound.set_volume(0.3)

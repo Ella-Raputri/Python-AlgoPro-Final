@@ -78,7 +78,8 @@ class Tree(Generic):
 		self.player_add = player_add
 
 		#sound
-		self.axe_sound = pygame.mixer.Sound('../audio/axe.mp3')
+		self.axe_sound = pygame.mixer.Sound('../audio/axe.wav')
+		self.axe_sound.set_volume(0.6)
 		
 	
 	def damage(self):

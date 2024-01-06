@@ -40,7 +40,7 @@ class CutSceneOne:
 
     def setup(self):
         self.text={}
-        file_story1 = open("story1.txt", "r")
+        file_story1 = open("../story/story1.txt", "r")
         for index, item in enumerate(file_story1.readlines()):
             self.text[index] = item
 
@@ -101,8 +101,8 @@ class CutSceneTwo:
 
     def setup(self):
         self.text={}
-        file_dialogue1 = open("story2.txt", "r")
-        for index, item in enumerate(file_dialogue1.readlines()):
+        file_story2 = open("../story/story2.txt", "r")
+        for index, item in enumerate(file_story2.readlines()):
             self.text[index] = item
 
     def update(self):
@@ -165,8 +165,8 @@ class CutSceneThree:
 
     def setup(self):
         self.text={}
-        file_dialogue1 = open("story3.txt", "r")
-        for index, item in enumerate(file_dialogue1.readlines()):
+        file_story3 = open("../story/story3.txt", "r")
+        for index, item in enumerate(file_story3.readlines()):
             self.text[index] = item
             # if index == 0 or 1 or 2 or 3 or 5 or 7 or 9 or 11:
             #     self.text_Bunn[index] = item
@@ -237,8 +237,8 @@ class CutSceneFour:
 
     def setup(self):
         self.text={}
-        file_dialogue1 = open("story4.txt", "r")
-        for index, item in enumerate(file_dialogue1.readlines()):
+        file_story4 = open("../story/story4.txt", "r")
+        for index, item in enumerate(file_story4.readlines()):
             self.text[index] = item
             # if index == 0 or 1 or 2 or 3 or 5 or 7 or 9 or 11:
             #     self.text_Bunn[index] = item

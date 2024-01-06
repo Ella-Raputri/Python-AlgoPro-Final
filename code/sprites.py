@@ -40,11 +40,6 @@ class Water(Generic):
 	def update(self,dt):
 		self.animate(dt)
 
-class WildFlower(Generic):
-	def __init__(self, pos, surf, groups):
-		super().__init__(pos, surf, groups)
-		self.hitbox = self.rect.copy().inflate(-20,-self.rect.height * 0.9)
-
 class Particle(Generic):
 	#particle when tree or apple is destroyed
 	def __init__(self, pos, surf, groups, z, duration = 200):
@@ -120,12 +115,9 @@ class Animal(Generic):
 				groups = groups, 
 				z = LAYERS['main']) 
 
-	def animate(self,dt):
+	def update(self,dt):
 		self.frame_index += 5 * dt
 		if self.frame_index >= len(self.frames):
 			self.frame_index = 0
         #update the image with the new surface
 		self.image = self.frames[int(self.frame_index)]
-
-	def update(self,dt):
-		self.animate(dt)

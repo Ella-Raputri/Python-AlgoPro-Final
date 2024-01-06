@@ -75,7 +75,7 @@ class SoilLayer:
 
         #sound
         self.hoe_sound = pygame.mixer.Sound('../audio/hoe.mp3')
-        self.hoe_sound.set_volume(0.3)
+        self.hoe_sound.set_volume(0.5)
         self.plant_sound = pygame.mixer.Sound('../audio/plant.mp3')
    
     def create_soil_grid(self):

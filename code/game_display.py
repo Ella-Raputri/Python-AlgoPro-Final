@@ -93,7 +93,7 @@ class Display:
 
 		#wildflowers 
 		for obj in self.tmx_data.get_layer_by_name('Decoration'):
-			WildFlower((obj.x, obj.y), obj.image, [self.all_sprites, self.collision_sprites])
+			Generic((obj.x, obj.y), obj.image, [self.all_sprites, self.collision_sprites])
 
 		#collision tiles
         #no need to be updated, so dont have to be include in all sprites

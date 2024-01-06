@@ -76,7 +76,7 @@ class Player(pygame.sprite.Sprite):
 
 		#sound
 		self.water_sound = pygame.mixer.Sound('../audio/water.mp3')
-		self.water_sound.set_volume(0.5)
+		self.water_sound.set_volume(0.3)
 		self.grass_sound = pygame.mixer.Sound('../audio/grass.mp3')
 		self.grass_sound.set_volume(0.4)
 		self.milk_sound = pygame.mixer.Sound('../audio/milk.mp3')
@@ -367,11 +367,3 @@ class Player(pygame.sprite.Sprite):
 				if collided_interaction_sprite:
 					if collided_interaction_sprite[0].name == 'Table':
 						self.cut_scene_manager.start_cut_scene(CutSceneTwo())
-
-			# else:
-			# 	self.cut_scene_manager.start_cut_scene(CutSceneOne())
-			# 	letter_surf = pygame.Surface((20,10))
-			# 	letter_surf.fill('white')
-
-			# 	for x, y, __ in self.tmx_data.get_layer_by_name('Letter').tiles():
-			# 		Generic((x * TILE_SIZE,y * TILE_SIZE), letter_surf, [self.all_sprites, self.collision_sprites])

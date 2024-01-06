@@ -36,8 +36,6 @@ class Intro:
         text_rect = text_surf.get_rect(topleft=(400, 560))
         self.display_surface.blit(text_surf, text_rect)
 
-
-
     def animate_all(self,dt):
         #button animation
         self.frame_index += 2 * dt

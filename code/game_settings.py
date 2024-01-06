@@ -64,6 +64,7 @@ KEYBOARD_KEYS = {
     'J' : 'Plant seed',
     'I' : 'Switch seed',
     'P' : 'Check inventory',
+    'H' : 'Open help menu',
     'O' : 'Close menu',
     'Enter': 'Go to bed, open merchant menu, or feed cow',
     'Arrow' : 'Navigate items in merchant menu',

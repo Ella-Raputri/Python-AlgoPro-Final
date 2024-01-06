@@ -240,10 +240,6 @@ class CutSceneFour:
         file_story4 = open("../story/story4.txt", "r")
         for index, item in enumerate(file_story4.readlines()):
             self.text[index] = item
-            # if index == 0 or 1 or 2 or 3 or 5 or 7 or 9 or 11:
-            #     self.text_Bunn[index] = item
-            # else:
-            #     self.text_Merchant[index] = item
 
     def update(self):
         pressed = pygame.key.get_pressed()
@@ -276,7 +272,7 @@ class CutSceneFour:
 
                 else:
                     blit_bg_image(screen, 'cutscene4/bg1.png')
-                    if self.step == 5 or self.step == 6 or self.step == 7:
+                    if self.step == 7 or self.step == 8:
                         letter_grandpa_surf = pygame.image.load('../graphics/dialogue/cutscene4/letter.png')
                         letter_grandpa_rect = letter_grandpa_surf.get_rect(center=(SCREEN_WIDTH//2, SCREEN_HEIGHT//2 - 90))
                         screen.blit(letter_grandpa_surf, letter_grandpa_rect)

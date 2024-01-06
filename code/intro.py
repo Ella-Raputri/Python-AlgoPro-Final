@@ -19,7 +19,16 @@ class Intro:
         self.chara_frames = import_folder('../graphics/world/intro_emote')
         self.chara_frame_index = 0
     
-    def blit_text(self):
+    def blit_all(self):
+        hat_surf = pygame.image.load('../graphics/world/hat.png')
+        hat_surf = pygame.transform.rotozoom(hat_surf, 50, 1.5)
+        hat_rect = hat_surf.get_rect(topleft=(110, 0))
+        self.display_surface.blit(hat_surf, hat_rect)
+
+        tree_surf = pygame.image.load('../graphics/world/christmas_tree.png')
+        tree_rect = tree_surf.get_rect(topleft=(1050, 0))
+        self.display_surface.blit(tree_surf, tree_rect)
+
         topic_surf1 = self.topic_font.render("Bunn's Christmas".upper(), False, 'chartreuse4')
         topic_rect1 = topic_surf1.get_rect(center= (SCREEN_WIDTH/2, 100))
         self.display_surface.blit(topic_surf1, topic_rect1)
@@ -59,7 +68,7 @@ class Intro:
         background = pygame.image.load('../graphics/world/intro.png')
         background_rect = background.get_rect(topleft= (0,0))
         self.display_surface.blit(background, background_rect)
-        self.blit_text()
+        self.blit_all()
         self.animate_all(dt)
     
     def play_cutscene(self):

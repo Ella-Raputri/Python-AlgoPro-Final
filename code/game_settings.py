@@ -8,12 +8,13 @@ SCREEN_HEIGHT = 720
 SCREEN_WIDTH = 1280
 TILE_SIZE = 64
 
-#overlay
+#overlay positions
 OVERLAY_POSITIONS = {
     'tool' : (40, SCREEN_HEIGHT - 15),
     'seed' : (40, SCREEN_HEIGHT - 80)
 }
 
+#player tool offset to determine the target position of the used tool 
 PLAYER_TOOL_OFFSET = {
 	'left': Vector2(-50,40),
 	'right': Vector2(50,40),
@@ -21,6 +22,7 @@ PLAYER_TOOL_OFFSET = {
 	'down': Vector2(0,50)
 }
 
+#layers of objects
 LAYERS = {
 	'water': 0,
 	'ground': 1,
@@ -28,18 +30,17 @@ LAYERS = {
 	'soil water': 3,
 	'rain floor': 4,
 	'house bottom': 5,
-	'ground plant': 6,
-	'main': 7,
-	'house top': 8,
-	'fruit': 9,
-	'rain drops': 10
+	'main': 6,
+	'rain drops': 7
 }
 
+#plan's grow speed
 GROW_SPEED = {
 	'corn': 1,
 	'tomato': 0.7
 }
 
+#item's sale prices
 SALE_PRICES = {
 	'corn': 10,
     'milk': 35,
@@ -47,12 +48,14 @@ SALE_PRICES = {
     'wood': 5
 }
 
+#item's purchase prices
 PURCHASE_PRICES = {
 	'corn': 4,
 	'tomato': 5,
     'grass' : 8
 }
 
+#keyboard keys input in this game
 KEYBOARD_KEYS = {
     'Esc' : 'Quit the game',
     'A' : 'Move left',
@@ -71,7 +74,15 @@ KEYBOARD_KEYS = {
     'C' : 'Start cutscene',
 }
 
+#overlay menu's button position
 BUTTON_POS = {
     'help' : (1220, 40),
     'inventory' : (1120, 40)
+}
+
+#colors that are common in the game
+GAME_COLOR = {
+    'dialogue box' : (232, 207,166),
+    'text': (184,139,98),
+    'inventory' : (244,231,196)
 }

@@ -75,6 +75,7 @@ class Button:
 
 	def checkForInput(self, position):
 		#if the x and y position is inside the button image, return True, else False
-		if position[0] in range(self.rect.left, self.rect.right) and position[1] in range(self.rect.top, self.rect.bottom):
+		if position[0] in range(self.rect.left, self.rect.right) and \
+			position[1] in range(self.rect.top, self.rect.bottom):
 			return True
 		return False

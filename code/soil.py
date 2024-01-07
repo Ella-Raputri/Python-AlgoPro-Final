@@ -23,7 +23,7 @@ class Plant(pygame.sprite.Sprite):
         self.image = self.frames[self.age] #the image depends on the age of the plant
         self.y_offset = -16 if plant_type == 'corn' else -8 #y offset of the plant
         self.rect = self.image.get_rect(midbottom = soil.rect.midbottom + pygame.math.Vector2(0, self.y_offset))
-        self.z = LAYERS['ground plant']
+        self.z = LAYERS['house bottom']
 
     def grow(self):
         #if it is watered, then age of the plant will be added by the grow speed

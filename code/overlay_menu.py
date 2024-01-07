@@ -84,10 +84,13 @@ class Inventory:
 
         #entries
         #list of the items
-        self.list_items = list(self.player.item_inventory.keys()) + list(self.player.seed_inventory.keys()) + list(self.player.other_inventory.keys())
+        self.list_items = list(self.player.item_inventory.keys()) \
+            + list(self.player.seed_inventory.keys()) + list(self.player.other_inventory.keys())
         path = '../graphics/inventory'
+
         #list of the item images
-        self.list_images = import_folder(f'{path}/item_inventory') + import_folder(f'{path}/seed_inventory') + import_folder(f'{path}/other_inventory')
+        self.list_images = import_folder(f'{path}/item_inventory') + \
+            import_folder(f'{path}/seed_inventory') + import_folder(f'{path}/other_inventory')
 
     def input(self):
         #check if there are any keys got pressed
@@ -150,7 +153,8 @@ class Inventory:
         self.show() #show inventory
 
         #showing amount based on the most updated version of player's inventory
-        amount_list = list(self.player.item_inventory.values()) + list(self.player.seed_inventory.values()) + list(self.player.other_inventory.values())
+        amount_list = list(self.player.item_inventory.values()) + \
+            list(self.player.seed_inventory.values()) + list(self.player.other_inventory.values())
         for row in range (0, (len(self.list_items) // 3)):
             for column in range (0, 3):
                 amount = amount_list[(row*3) + column]

@@ -96,7 +96,7 @@ class Tree(Generic):
 		self.axe_sound.play()
 
 	def check_death(self):
-		#if health is lesser than 0
+		#if health is lesser than or equal to 0
 		if self.health <= 0:
 			#the surface will become stump
 			self.image = self.stump_surf

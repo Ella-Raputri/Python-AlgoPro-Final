@@ -49,7 +49,7 @@ class Drop(Generic):
             self.rect.topleft = (round(self.pos.x), round(self.pos.y))
         #timer
         if pygame.time.get_ticks() - self.start_time >= self.lifetime:
-            #if it's duration already greater than it's lifetime than kill it
+            #if it's duration already greater than it's lifetime then kill it
             self.kill()
 
 class Rain:

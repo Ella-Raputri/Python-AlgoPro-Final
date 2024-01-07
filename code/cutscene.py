@@ -384,7 +384,7 @@ class CutSceneManager:
 
     def update(self):
         #update the cutscene status based on each cutscene
-        #if the cutscene reaches the end, then it will be the status will be False
+        #if the cutscene reaches the end, then the status will be False
         if self.cut_scene_running:
             self.cut_scene_running = self.cut_scene.update()
         else:

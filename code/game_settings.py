@@ -34,7 +34,7 @@ LAYERS = {
 	'rain drops': 7
 }
 
-#plan's grow speed
+#plant's grow speed
 GROW_SPEED = {
 	'corn': 1,
 	'tomato': 0.7

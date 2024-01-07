@@ -16,7 +16,8 @@ class Menu:
         self.padding = 8
 
         #entries
-        self.options = list(self.player.item_inventory.keys()) + list(self.player.seed_inventory.keys()) + list(self.player.other_inventory.keys())
+        self.options = list(self.player.item_inventory.keys()) + \
+            list(self.player.seed_inventory.keys()) + list(self.player.other_inventory.keys())
         self.sell_border = len(self.player.item_inventory) - 1 #to determine which item can be bought and can be sold
         self.setup()
 
@@ -51,16 +52,13 @@ class Menu:
         #create the text surfaces
         self.text_surfs = []
         self.total_height = 0
-        i = 0
         #for every item
-        for item in self.options:
+        for item_index, item in enumerate(self.options):
             #render the name and the price of each item, append it to the text_surfs list
-            text_surf = self.font.render(F'{item} (${ALL_PRICES[i]})', False, 'Black')
+            text_surf = self.font.render(F'{item} (${ALL_PRICES[item_index]})', False, 'Black')
             self.text_surfs.append(text_surf)
             #calculate the total height of the menu
             self.total_height += text_surf.get_height() + (self.padding * 2)
-            #go to next item's price in ALL_PRICES
-            i += 1
 
         #calculate the total height of the menu
         self.total_height += (len(self.text_surfs) - 1) * self.space
@@ -146,14 +144,13 @@ class Menu:
 
         #selected
         if selected:
-
             pygame.draw.rect(self.display_surface, 'black', bg_rect, 4, 4)
             if self.index <= self.sell_border: #sell item
                 pos_rect = self.sell_text.get_rect(midleft = (self.main_rect.left + 200, bg_rect.centery))
-                self.display_surface.blit(self.sell_text, pos_rect)
-            else:
+                self.display_surface.blit(self.sell_text, pos_rect) #display 'sell' text
+            else: #buy item
                 pos_rect = self.buy_text.get_rect(midleft = (self.main_rect.left + 200, bg_rect.centery))
-                self.display_surface.blit(self.buy_text, pos_rect)
+                self.display_surface.blit(self.buy_text, pos_rect) #display 'buy' text
 
     def update(self):
         self.input() #update based on player's input
@@ -164,6 +161,7 @@ class Menu:
             #top of the background rect
             top = self.main_rect.top + text_index * (text_surf.get_height() + (self.padding *2) + self.space)
             #the amount of each item
-            amount_list = list(self.player.item_inventory.values()) + list(self.player.seed_inventory.values()) + list(self.player.other_inventory.values())
+            amount_list = list(self.player.item_inventory.values()) + \
+                list(self.player.seed_inventory.values()) + list(self.player.other_inventory.values())
             amount = amount_list[text_index]
             self.show_entries(text_surf, amount, top, self.index == text_index)

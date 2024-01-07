@@ -1,7 +1,7 @@
 import pygame
 from game_settings import *
 from pytmx.util_pygame import load_pygame
-from support import *
+from support import import_folder, import_folder_dict
 from random import choice
 
 class Plant(pygame.sprite.Sprite):

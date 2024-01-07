@@ -4,7 +4,7 @@ from player import Player
 from overlay import Overlay
 from sprites import *
 from pytmx.util_pygame import load_pygame
-from support import *
+from support import import_folder
 from transition import Transition
 from soil import SoilLayer
 from sky import Rain, Sky

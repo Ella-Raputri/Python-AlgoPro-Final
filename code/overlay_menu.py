@@ -1,6 +1,6 @@
-import pygame, math
+import pygame
 from game_settings import *
-from support import *
+from support import import_folder
 
 class Overlay_Menu:
     def __init__(self, player, toggle_menu):

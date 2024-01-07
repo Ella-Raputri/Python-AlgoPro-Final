@@ -1,6 +1,6 @@
 import pygame
 from game_settings import *
-from support import *
+from support import import_folder
 from random import randint, choice
 from sprites import Generic
 

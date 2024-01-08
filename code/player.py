@@ -94,7 +94,6 @@ class Player(pygame.sprite.Sprite):
 
 		#button
 		self.display_surface = pygame.display.get_surface() #display surface
-		self.font = pygame.font.Font('../font/LycheeSoda.ttf', 40) #font
 
 		#help button image
 		self.help_image = pygame.image.load('../graphics/button/help.png')
@@ -243,6 +242,7 @@ class Player(pygame.sprite.Sprite):
 					elif self.inventory_button.checkForInput(mouse_pos):
 						self.toggle_inventory()
 
+				#exit the game
 				if event.type == pygame.QUIT:
 					pygame.quit()
 					sys.exit()

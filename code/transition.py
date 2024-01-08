@@ -13,7 +13,7 @@ class Transition:
 		#color
 		self.color = 255
 		#changing color speed
-		self.speed = -2
+		self.speed = -1
 
 	def play(self):
 		#playing color transition from white to black
@@ -29,7 +29,7 @@ class Transition:
 		if self.color > 255:
 			self.color = 255
 			self.player.sleep = False
-			self.speed = -2
+			self.speed = -1
 
 		#fill the surface with the corresponding color
 		self.image.fill((self.color,self.color,self.color))

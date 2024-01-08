@@ -13,6 +13,28 @@ from merchant_menu import Menu
 from overlay_menu import Overlay_Menu, Inventory
 from cutscene import CutSceneManager
 
+class CameraGroup(pygame.sprite.Group):
+	def __init__(self):
+		super().__init__()
+		#the display surface and the offset
+		self.display_surface = pygame.display.get_surface()
+		self.offset = pygame.math.Vector2()
+
+	def custom_draw(self, player):
+		#how much we want to shift the sprite based on the player's movement
+		self.offset.x = player.rect.centerx - SCREEN_WIDTH / 2
+		self.offset.y = player.rect.centery - SCREEN_HEIGHT / 2
+
+		#it is sorted to draw the layers based on the y index
+        #if the player y is lesser than the object, then the player will be blitted behind that object
+		for layer in LAYERS.values():
+			for sprite in sorted(self.sprites(), key = lambda sprite: sprite.rect.centery):
+				if sprite.z == layer:
+					offset_rect = sprite.rect.copy()
+					offset_rect.center -= self.offset
+					self.display_surface.blit(sprite.image, offset_rect)
+
+
 class Display:
 	def __init__(self):
 		# get the display surface
@@ -67,7 +89,7 @@ class Display:
 		self.bg_sound.set_volume(0.25)
 		self.bg_sound.play(loops=-1)
 
-		#when clicking a button or toggling menus that are on the screen
+		#when clicking a button or toggling menus
 		self.click_sound = pygame.mixer.Sound('../audio/click.mp3')
 		self.click_sound.set_volume(0.3)
 
@@ -183,6 +205,7 @@ class Display:
 
 	def toggle_shop(self):
 		#toggling on and off for the shop
+		self.click_sound.play()
 		self.shop_active = not self.shop_active
 	
 	def toggle_help(self):
@@ -206,7 +229,9 @@ class Display:
 		#remove water on the soils
 		self.soil_layer.remove_water()
 
-		#randomize the rain
+		#randomize the rain again
+		self.raining = randint(0,10) < 3
+		self.soil_layer.raining = self.raining
 		#if it's raining, all plantable soils will become water soils
 		if self.raining:
 			self.soil_layer.water_all()
@@ -266,7 +291,6 @@ class Display:
 
 	def run(self,dt):
 		#run and update all the game elements
-
 		#if no cutscene runs at the moment
 		if self.cut_scene_manager.cut_scene_running == False:
 			#draw player and its environment based on the camera
@@ -300,31 +324,6 @@ class Display:
 			#then update rain drops and rain floors
 			self.rain.update()
 
-		#day-night transition
-		self.sky.display(dt)
-
 		#transition if player goes to bed
 		if self.player.sleep:
 			self.transition.play()
-
-
-class CameraGroup(pygame.sprite.Group):
-	def __init__(self):
-		super().__init__()
-		#the display surface and the offset
-		self.display_surface = pygame.display.get_surface()
-		self.offset = pygame.math.Vector2()
-
-	def custom_draw(self, player):
-		#how much we want to shift the sprite based on the player's movement
-		self.offset.x = player.rect.centerx - SCREEN_WIDTH / 2
-		self.offset.y = player.rect.centery - SCREEN_HEIGHT / 2
-
-		#it is sorted to draw the layers based on the y index
-        #if the player y is lesser than the object, then the player will be blitted behind that object
-		for layer in LAYERS.values():
-			for sprite in sorted(self.sprites(), key = lambda sprite: sprite.rect.centery):
-				if sprite.z == layer:
-					offset_rect = sprite.rect.copy()
-					offset_rect.center -= self.offset
-					self.display_surface.blit(sprite.image, offset_rect)

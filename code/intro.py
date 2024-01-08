@@ -21,28 +21,28 @@ class Intro:
     
     def blit_all(self):
         #load the Christmas hat image, rotate and scale it, then blit it
-        hat_surf = pygame.image.load('../graphics/world/hat.png')
+        hat_surf = pygame.image.load('../graphics/world/hat.png').convert_alpha()
         hat_surf = pygame.transform.rotozoom(hat_surf, 50, 1.5)
         hat_rect = hat_surf.get_rect(topleft=(110, 0))
         self.display_surface.blit(hat_surf, hat_rect)
 
         #load the Christmas tree image and blit it
-        tree_surf = pygame.image.load('../graphics/world/christmas_tree.png')
+        tree_surf = pygame.image.load('../graphics/world/christmas_tree.png').convert_alpha()
         tree_rect = tree_surf.get_rect(topleft=(1050, 0))
         self.display_surface.blit(tree_surf, tree_rect)
 
         #load the first part of the topic text as a surface and blit it
-        topic_surf1 = self.topic_font.render("Bunn's Christmas".upper(), False, 'chartreuse4')
+        topic_surf1 = self.topic_font.render((GAME_NAME.split()[0] + " " + GAME_NAME.split()[1]).upper(), False, 'chartreuse4')
         topic_rect1 = topic_surf1.get_rect(center= (SCREEN_WIDTH/2, 100))
         self.display_surface.blit(topic_surf1, topic_rect1)
 
         #load the second part of the topic text as a surface and blit it
-        topic_surf2 = self.topic_font.render("Tree Tale".upper(), False, 'darkgreen')
+        topic_surf2 = self.topic_font.render((GAME_NAME.split()[2] + " " + GAME_NAME.split()[3]).upper(), False, 'darkgreen')
         topic_rect2 = topic_surf2.get_rect(center= (SCREEN_WIDTH/2, 200))
         self.display_surface.blit(topic_surf2, topic_rect2)
 
         #load the dialogue box and blit it
-        dialog_surf = pygame.image.load('../graphics/world/dialog.png')
+        dialog_surf = pygame.image.load('../graphics/world/dialog.png').convert_alpha()
         dialog_rect = dialog_surf.get_rect(topleft=(350, 500))
         self.display_surface.blit(dialog_surf, dialog_rect)
 
@@ -74,7 +74,7 @@ class Intro:
 
     def run(self, dt):
         #display the background image on the screen
-        background = pygame.image.load('../graphics/world/intro.png')
+        background = pygame.image.load('../graphics/world/intro.png').convert()
         background_rect = background.get_rect(topleft= (0,0))
         self.display_surface.blit(background, background_rect)
 
@@ -90,4 +90,5 @@ class Intro:
         letter_surf.fill('white')
 
         for x, y, __ in self.display_game.tmx_data.get_layer_by_name('Letter').tiles():
-            Generic((x * TILE_SIZE,y * TILE_SIZE), letter_surf, [self.display_game.all_sprites, self.display_game.collision_sprites])
+            Generic((x * TILE_SIZE,y * TILE_SIZE), letter_surf, 
+                    [self.display_game.all_sprites, self.display_game.collision_sprites])

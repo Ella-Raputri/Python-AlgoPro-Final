@@ -295,6 +295,8 @@ class Display:
 		if self.cut_scene_manager.cut_scene_running == False:
 			#draw player and its environment based on the camera
 			self.all_sprites.custom_draw(self.player)
+			#day-night transition
+			self.sky.display(dt)
 			#if shop is active and help and inventory is not active, update shop
 			if self.shop_active and not self.help_active and not self.inventory_active:
 				self.menu.update()

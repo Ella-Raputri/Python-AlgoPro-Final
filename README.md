@@ -76,20 +76,20 @@ To access the demo video, click [here](https://drive.google.com/drive/folders/1Z
 
 Intro Menu
 
-<img src="../document/intro_menu.png" alt ="Intro Menu" width = "600">
+<img src="document/screenshots/intro_menu.png" alt ="Intro Menu" width = "600">
 
 <br>
 Cutscene
 
-<img src="../document/cutscene.png" alt ="Cutscene" width = "600">
+<img src="document/screenshots/cutscene.png" alt ="Cutscene" width = "600">
 
 <br>
 Daytime
 
-<img src="../document/daytime.png" alt ="Daytime" width = "600">
+<img src="document/screenshots/daytime.png" alt ="Daytime" width = "600">
 
 <br>
 Nighttime
 
-<img src="../document/nighttime.png" alt ="Nightime" width = "600">
+<img src="document/screenshots/nighttime.png" alt ="Nightime" width = "600">
 
